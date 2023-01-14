@@ -1,0 +1,61 @@
+body {
+  // remoove
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  background-color: #bdbbbb;
+}
+.containerHome {
+  background-color: #e5e5e5;
+  margin: 0 auto;
+  padding: 50px 75px 60px;
+}
+.filterWrapper {
+  background-color: aqua;
+  margin-bottom: 40px;
+}
+.divider {
+  margin-bottom: 45px;
+}
+.cardContent {
+  height: 220px;
+}
+.cardDate {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+.cardDate::before {
+  content: "";
+  background-image: url("../../assets//svg/cardDate.svg");
+  background-size: 20px 20px;
+  height: 20px;
+  width: 20px;
+  margin-right: 9px;
+}
+.cardTitle {
+  height: 70px;
+  overflow: hidden;
+}
+.cardSummary {
+  height: 130px;
+  overflow: hidden;
+}
+.link::after {
+  display: inline-flex;
+  content: "";
+  background-image: url("../../assets//svg/Arrow.svg");
+  background-size: 12px 10px;
+  height: 10px;
+  width: 12px;
+  margin-left: 5px;
+}
+.link:link,
+.link:hover,
+.link:visited {
+  text-decoration: none;
+  color: #363636;
+  font-weight: 700;
+  font-size: 16px;
+}

@@ -1,13 +1,22 @@
 import React from "react";
-import Button from '@mui/material/Button';
-import styles from'./app.module.scss'
+import { Routes, Route } from "react-router-dom";
+import Home from "./components/home/Home";
+import Detail from "./components/detail/Detail";
 
 const App: React.FC = () => {
   return (
-      <div className={styles.wrapper}>
-         Hello, this is my React app.
-         <Button className={styles.button} variant="contained">Hello World</Button>
-      </div>
-  )
-}
+    <Routes>
+      <Route path="/" element={<Home />} />
+      {/* <Route
+      path="/now_playing"
+      element={<ItemList itemLabel={loadSection[0]} />}
+    /> */}
+      {/* <Route
+      path="/popular"
+      element={<ItemList itemLabel={loadSection[1]} />}
+    /> */}
+      <Route path="/:id" element={<Detail />} />
+    </Routes>
+  );
+};
 export default App;

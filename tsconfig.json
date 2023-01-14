@@ -18,7 +18,11 @@
         "resolveJsonModule": true,
         "isolatedModules": true,
         "noEmit": false,
-        "jsx": "react-jsx"
+        "jsx": "react-jsx",
+         "baseUrl": ".",
+         "paths": {
+             "@app/*": ["src/*"]
+         }
     },
     "include": ["./src/*", "**/*.ts", "**/*.tsx", "./src/assets/svg/svg.d.ts"]
 }

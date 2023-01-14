@@ -1,0 +1,41 @@
+.containerDetail {
+    margin: 0 auto;
+    background-color: beige;
+    border: 1px solid red;
+    height: 100vh;
+}
+.containerImg {
+    width: 100%;
+    height: 245px;
+    overflow: hidden;
+}
+.itemImg {
+    width: 100%;
+    height: auto;
+    object-position: top;
+}
+.containerArticle {
+    margin: 0 75px;
+}
+.containerRelative {
+    position: relative;
+}
+.containerAbsolute {
+    z-index: 10;
+    position: absolute;
+    left: 0px;
+    top: -100px;
+    background-color: white;
+    width: 1300px;
+    height: 900px;
+}
+.articleTitle {
+    padding: 35px 0px;
+    text-align: center;
+}
+.articleWrapper {
+    padding: 0px 75px 50px;
+}
+.articleText {
+
+}
