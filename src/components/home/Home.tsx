@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { CardType } from "../../assets/types/cardType";
 import Filter from "../filter/Filter";
+import * as dayjs from 'dayjs'
+import axios from "axios";
+import style from "./home.module.scss";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
+import { RootState } from "../../redux/store";
+import {
+  // add,
+  getAllByScore,
+  getCardsList,
+  selectors,
+} from "../../redux/cardSlice";
+
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
 import Divider from "@mui/material/Divider";
-import style from "./home.module.scss";
-
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -31,39 +40,25 @@ declare module "@mui/system" {
 }
 
 const Home: React.FC = () => {
-  const [data, setData] = useState<CardType[]>();
+  const dispatch = useAppDispatch();
+  const data = useAppSelector((state) => getAllByScore(state, ""));
 
   const getDate = (item: CardType) => {
     const temp = new Date(item.publishedAt);
-    let result = `${temp.toString().slice(4, 8)} ${temp
+    const result = `${temp.toString().slice(4, 8)} ${temp
       .toString()
       .slice(8, 10)}th, ${temp.toString().slice(11, 15)}`;
     return result;
   };
 
   useEffect(() => {
-    async function getData() {
-      try {
-        const { data } = await axios.get<CardType[]>(
-          "https://api.spaceflightnewsapi.net/v3/articles?_limit=21",
-          {
-            headers: { Accept: "application/json" },
-          }
-        );
-        setData(data);
-      } catch (error) {
-        if (axios.isAxiosError(error)) {
-          console.log("error message: ", error.message);
-          return error.message;
-        } else {
-          console.log("unexpected error: ", error);
-          return "An unexpected error occurred";
-        }
-      }
-    }
-    getData();
+    fetchInitialData();
   }, []);
-  console.log(data);
+
+  const fetchInitialData = async () => {
+    await dispatch(getCardsList(21));
+  };
+
   return (
     <ThemeProvider
       theme={createTheme({
@@ -88,7 +83,7 @@ const Home: React.FC = () => {
           <Divider />
         </Box>
         <Grid container columns={12} justifyContent="space-between" spacing={3}>
-          {data !== undefined
+          {!!data?.length
             ? data.map((item) => (
                 <Grid mobile={8} tablet={6} laptop={4} key={item.id}>
                   <Card>
@@ -127,8 +122,12 @@ const Home: React.FC = () => {
                     </CardContent>
                     <CardActions>
                       <Button size="small">
-                        <Link className={style.link} state={{ from: item }} to={`/${item.id}`}>
-                          Read more  
+                        <Link
+                          className={style.link}
+                          state={{ from: item }}
+                          to={`/${item.id}`}
+                        >
+                          Read more
                         </Link>
                       </Button>
                     </CardActions>

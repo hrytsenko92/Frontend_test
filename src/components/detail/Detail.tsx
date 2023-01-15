@@ -25,7 +25,7 @@ const Detail: React.FC = () => {
             >
               {from.title}
             </Typography>
-            <Box className={style.articleWrapper} >
+            <Box className={style.articleWrapper}>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Interdum ornare convallis non etiam tincidunt tincidunt. Non
@@ -88,6 +88,9 @@ const Detail: React.FC = () => {
                 Ac faucibus donec sit morbi pharetra urna. Vel facilisis amet
                 placerat ultrices lobortis proin nulla.
               </p>
+              <Link className={style.homeLink} to="/">
+              Back to homepage
+              </Link>
             </Box>
           </Box>
         </Box>

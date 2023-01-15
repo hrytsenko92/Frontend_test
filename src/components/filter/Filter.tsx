@@ -1,11 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useCallback } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import style from "./filter.module.scss";
 import InputAdornment from "@mui/material/InputAdornment";
 import Typography from "@mui/material/Typography";
+import debounce from 'lodash.debounce';
 
 const Filter: React.FC = () => {
+  const [query, setQuery] = useState<string>("");
+
+  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(event.target.value);
+    console.log(typeof event.target.value)
+  };
+  const debouncedChangeHandler = useCallback(
+    debounce(changeHandler, 300)
+  , []);
+
+
   return (
     <Box
     className={style.filter}
@@ -19,6 +31,8 @@ const Filter: React.FC = () => {
       </Typography>
       <TextField
         className={style.textField}
+        onChange={changeHandler}
+        value={query}
         fullWidth
         id="fullWidth"
         InputProps={{

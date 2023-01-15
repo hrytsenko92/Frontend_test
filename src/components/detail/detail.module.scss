@@ -1,7 +1,6 @@
 .containerDetail {
     margin: 0 auto;
-    background-color: beige;
-    border: 1px solid red;
+    background-color: #E5E5E5;
     height: 100vh;
 }
 .containerImg {
@@ -26,16 +25,44 @@
     left: 0px;
     top: -100px;
     background-color: white;
-    width: 1300px;
-    height: 900px;
+    width: 100%;
 }
 .articleTitle {
     padding: 35px 0px;
     text-align: center;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
 }
 .articleWrapper {
+    position: relative;
     padding: 0px 75px 50px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
 }
-.articleText {
-
+.homeLink {
+    position: absolute;
+    left: 75px;
+    bottom: -50px;
+}
+.homeLink::before {
+    display: inline-flex;
+    content: "";
+    background-image: url("../../assets//svg/ArrowL.svg");
+    background-size: 12px 10px;
+    height: 10px;
+    width: 12px;
+    margin-right: 5px;
+  }
+  .homeLink:link,
+  .homeLink:hover,
+.homeLink:visited {
+  text-decoration: none;
+  color: #363636;
+  font-weight: 700;
+  font-size: 16px;
 }

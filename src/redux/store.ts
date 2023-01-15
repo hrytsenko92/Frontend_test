@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-// import playlistSlice from "./playlistSlice";
+import cardSlice from './cardSlice';
 
 export const store = configureStore({
     reducer: {
-        // playlist: playlistSlice,
+        cards: cardSlice,
 
     }
 })

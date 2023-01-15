@@ -8,6 +8,7 @@ interface CssExports {
   'containerDetail': string;
   'containerImg': string;
   'containerRelative': string;
+  'homeLink': string;
   'itemImg': string;
 }
 export const cssExports: CssExports;
