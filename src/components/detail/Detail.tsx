@@ -7,7 +7,6 @@ import Typography from "@mui/material/Typography";
 const Detail: React.FC = () => {
   const location = useLocation();
   const { from } = location.state;
-  console.log(from);
   return (
     <Box className={style.containerDetail} maxWidth={1440}>
       <Box className={style.containerImg}>
@@ -89,7 +88,7 @@ const Detail: React.FC = () => {
                 placerat ultrices lobortis proin nulla.
               </p>
               <Link className={style.homeLink} to="/">
-              Back to homepage
+                Back to homepage
               </Link>
             </Box>
           </Box>
@@ -100,10 +99,3 @@ const Detail: React.FC = () => {
 };
 
 export default Detail;
-{
-  /* <div>Detail</div>
-      <div>{from.id}</div>
-      <button>
-        <Link to="/">Home</Link>
-      </button> */
-}

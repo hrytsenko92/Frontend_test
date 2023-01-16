@@ -7,8 +7,11 @@ interface CssExports {
   'cardTitle': string;
   'containerHome': string;
   'divider': string;
+  'filter': string;
   'filterWrapper': string;
   'link': string;
+  'textField': string;
+  'title': string;
 }
 export const cssExports: CssExports;
 export default cssExports;
