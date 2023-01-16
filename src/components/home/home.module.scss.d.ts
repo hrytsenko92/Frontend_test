@@ -5,10 +5,10 @@ interface CssExports {
   'cardDate': string;
   'cardSummary': string;
   'cardTitle': string;
+  'cardWrapper': string;
   'containerHome': string;
   'divider': string;
   'filter': string;
-  'filterWrapper': string;
   'link': string;
   'textField': string;
   'title': string;

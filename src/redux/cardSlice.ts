@@ -20,7 +20,6 @@ export const getCardsList = createAsyncThunk(
         params: { _limit: limit ?? 21 },
       }
     );
-
     return response.data;
   }
 );
@@ -39,9 +38,8 @@ export const cardsSlice = createSlice({
     });
   },
 });
-export const selectors = cardsAdapter.getSelectors(
-  (state: RootState) => state.cards
-);
+
+export const selectors = cardsAdapter.getSelectors((state: RootState) => state.cards);
 
 export const getAllByScore = createSelector(
   [selectors.selectAll, (_, value) => value],

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { CardType } from "../../assets/types/cardType";
 import dayjs from "dayjs";
 import style from "./home.module.scss";
+import Highlighter from "react-highlight-words";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
-import { RootState } from "../../redux/store";
-import { getAllByScore, getCardsList, selectors } from "../../redux/cardSlice";
+import { getAllByScore, getCardsList } from "../../redux/cardSlice";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
@@ -21,15 +20,15 @@ import InputAdornment from "@mui/material/InputAdornment";
 
 declare module "@mui/system" {
   interface BreakpointOverrides {
+    desktop: true;
     laptop: true;
     tablet: true;
     mobile: true;
-    desktop: true;
-    xs: false;
-    sm: false;
-    md: false;
-    lg: false;
     xl: false;
+    lg: false;
+    md: false;
+    sm: false;
+    xs: false;
   }
 }
 const advancedFormat = require("dayjs/plugin/advancedFormat");
@@ -37,13 +36,12 @@ dayjs.extend(advancedFormat);
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();
-  const data = useAppSelector((state) => getAllByScore(state, ""));
   const [query, setQuery] = useState<string>("");
-
+  const data = useAppSelector((state) => getAllByScore(state, query));
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
-    console.log(event.target.value);
   };
+
   const fetchInitialData = async () => {
     await dispatch(getCardsList(21));
   };
@@ -52,15 +50,13 @@ const Home: React.FC = () => {
     fetchInitialData();
   }, []);
 
-  // console.warn({data})
-
   return (
     <ThemeProvider
       theme={createTheme({
         breakpoints: {
           values: {
-            mobile: 360,
-            tablet: 840,
+            mobile: 640,
+            tablet: 960,
             laptop: 1366,
             desktop: 1440,
           },
@@ -109,14 +105,27 @@ const Home: React.FC = () => {
           </Grid>
         </Grid>
         <Box className={style.divider}>
-          <div>Results: {data?.length}</div>
+          <Typography variant="subtitle2" gutterBottom>
+            Results: {data?.length}
+          </Typography>
           <Divider />
         </Box>
-        <Grid container columns={12} justifyContent="space-between" spacing={3}>
+        <Grid
+          container
+          columns={{ mobile: 12 }}
+          justifyContent="space-between"
+          spacing={3}
+        >
           {!!data?.length
             ? data.map((item) => (
-                <Grid mobile={8} tablet={6} laptop={4} key={item.id}>
-                  <Card>
+                <Grid
+                  justifySelf={{ mobile: "center", tablet: "space-between" }}
+                  mobile={12}
+                  tablet={6}
+                  laptop={4}
+                  key={item.id}
+                >
+                  <Card className={style.cardWrapper}>
                     <CardMedia
                       component="img"
                       height="320px"
@@ -134,21 +143,16 @@ const Home: React.FC = () => {
                       >
                         {dayjs(item.publishedAt).format("MM Do YYYY")}
                       </Typography>
-                      <Typography
+                      <Highlighter
                         className={style.cardTitle}
-                        gutterBottom
-                        variant="h5"
-                        component="div"
-                      >
-                        {item.title}
-                      </Typography>
-                      <Typography
+                        searchWords={[query]}
+                        textToHighlight={item.title}
+                      />
+                      <Highlighter
                         className={style.cardSummary}
-                        variant="body2"
-                        color="text.secondary"
-                      >
-                        {item.summary}
-                      </Typography>
+                        searchWords={[query]}
+                        textToHighlight={item.summary}
+                      />
                     </CardContent>
                     <CardActions>
                       <Button size="small">
