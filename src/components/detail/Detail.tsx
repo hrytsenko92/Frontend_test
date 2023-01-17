@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Box } from "@mui/system";
 import style from "./detail.module.scss";
@@ -7,6 +7,10 @@ import Typography from "@mui/material/Typography";
 const Detail: React.FC = () => {
   const location = useLocation();
   const { from } = location.state;
+  useEffect(()=>{
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+  },[])
+  
   return (
     <Box className={style.containerDetail} maxWidth={1440}>
       <Box className={style.containerImg}>

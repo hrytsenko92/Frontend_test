@@ -79,6 +79,7 @@ const Home: React.FC = () => {
               <TextField
                 className={style.textField}
                 onChange={changeHandler}
+                placeholder="Case sensitivity"
                 value={query}
                 fullWidth
                 id="fullWidth"

@@ -1,7 +1,16 @@
+:root {
+    --backgroundHTML: #bdbbbb;
+    --backgroundContainer: #E5E5E5;
+    --backgroungCard: #ffffff;
+    --border: #eaeaea;
+    --text: #363636;
+  }
+
 .containerDetail {
     margin: 0 auto;
-    background-color: #E5E5E5;
-    height: 100vh;
+    background-color: var(--backgroundContainer);
+    height: 160vh;
+    color: var(--text);
 }
 .containerImg {
     width: 100%;
@@ -24,10 +33,16 @@
     position: absolute;
     left: 0px;
     top: -100px;
-    background-color: white;
+    background-color: var(--backgroungCard);
     width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
 }
 .articleTitle {
+    display: inline-block;
+    width: 90%;
+    margin: 0 auto;
     padding: 35px 0px;
     text-align: center;
     font-size: 24px;
