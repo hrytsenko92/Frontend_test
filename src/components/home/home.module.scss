@@ -11,13 +11,14 @@ body {
   padding: 0;
   outline: 0;
   height: 100vh;
+  max-width: 1440px;
+  margin: 0 auto;
   background-color: var(--backgroundHTML);
   color: var(--text);
   font-family: 'Montserrat', sans-serif;
 }
 .containerHome {
   background-color: var(--backgroundContainer);
-  margin: 0 auto;
   padding: 50px 75px 60px;
 }
 .filter {

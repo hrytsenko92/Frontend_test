@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { getAllByScore, getCardsList } from "../../redux/cardSlice";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid from '@mui/material/Grid';
 import Divider from "@mui/material/Divider";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -55,7 +55,7 @@ const Home: React.FC = () => {
       theme={createTheme({
         breakpoints: {
           values: {
-            mobile: 640,
+            mobile: 480,
             tablet: 960,
             laptop: 1366,
             desktop: 1440,
@@ -63,9 +63,9 @@ const Home: React.FC = () => {
         },
       })}
     >
-      <Box className={style.containerHome} maxWidth={1440}>
-        <Grid container columns={12} justifyContent="start" spacing={3}>
-          <Grid mobile={8} tablet={6} laptop={6}>
+      <Box className={style.containerHome}>
+        <Grid container columns={12} justifyContent="start">
+          <Grid item mobile={8} tablet={6} laptop={6}>
             <Box
               className={style.filter}
               sx={{
@@ -113,13 +113,14 @@ const Home: React.FC = () => {
         </Box>
         <Grid
           container
-          columns={{ mobile: 12 }}
+          columns={{ mobile: 12, tablet: 12, laptop: 12 }}
           justifyContent="space-between"
           spacing={3}
         >
           {!!data?.length
             ? data.map((item) => (
                 <Grid
+                  item
                   justifySelf={{ mobile: "center", tablet: "space-between" }}
                   mobile={12}
                   tablet={6}
